@@ -16,43 +16,42 @@ class SBoxEncipher {
       		     {2, 3, 14, 12}
 	             };            
 
-	String plaintext = new String("1000 1100 1101 0110"); //Plaintext containing 4 binary numbers
-	String key1 = new String("0001 0011 0010 1111"); //Key containing 4 binary numbers
-	String key2 = new String("1010 0010 0011 1010"); //Key containing 4 binary numbers
+	String plaintext = new String("0010 1001 1100 0010"); //Plaintext containing 4 binary numbers
+	String key = new String("0001 0011 0010 1111"); //Key containing 4 binary numbers
 
 	int base = 2;
 
 	//Convert numbers to ints for proper xor evaluation
 	int a2 = Integer.parseInt(plaintext.substring(5,9), base);
-	int k1 = Integer.parseInt(key1.substring(0, 4), base);
-	int k1xor1 = (a2 ^ k1);
+	int k1 = Integer.parseInt(key.substring(0, 4), base);
+	int kxor1 = (a2 ^ k1);
 	//Convert ints to binary string format with 0s for padding (e.g. 110 -> 0110)
-	String k1xor1s = String.format("%4s", Integer.toBinaryString(k1xor1)).replace(' ', '0');
+	String kxor1s = String.format("%4s", Integer.toBinaryString(kxor1)).replace(' ', '0');
 
 	int a4 = Integer.parseInt(plaintext.substring(15), base);
-	int k3 = Integer.parseInt(key1.substring(10, 14), base);
-	int k1xor2 = (a4 ^ k3);
-	String k1xor2s = String.format("%4s", Integer.toBinaryString(k1xor2)).replace(' ', '0');
+	int k3 = Integer.parseInt(key.substring(10, 14), base);
+	int kxor2 = (a4 ^ k3);
+	String kxor2s = String.format("%4s", Integer.toBinaryString(kxor2)).replace(' ', '0');
 
 	int a1 = Integer.parseInt(plaintext.substring(0,4), base);
-	int k2 = Integer.parseInt(key1.substring(5, 9), base);
-	int k1xor3 = (a1 ^ k2);
-	String k1xor3s = String.format("%4s", Integer.toBinaryString(k1xor3)).replace(' ', '0');
+	int k2 = Integer.parseInt(key.substring(5, 9), base);
+	int kxor3 = (a1 ^ k2);
+	String kxor3s = String.format("%4s", Integer.toBinaryString(kxor3)).replace(' ', '0');
 
 	int a3 = Integer.parseInt(plaintext.substring(10,14), base);
-	int k4 = Integer.parseInt(key1.substring(15), base);
-	int k1xor4 = (a3 ^ k4);
-	String k1xor4s = String.format("%4s", Integer.toBinaryString(k1xor4)).replace(' ', '0');
+	int k4 = Integer.parseInt(key.substring(15), base);
+	int kxor4 = (a3 ^ k4);
+	String kxor4s = String.format("%4s", Integer.toBinaryString(kxor4)).replace(' ', '0');
 
 	//obtain coordinates from binary strings
-	int cipher1xCoord = Integer.parseInt(k1xor1s.substring(0, 2), base);
-	int cipher1yCoord = Integer.parseInt(k1xor1s.substring(2, 4), base);
-	int cipher2xCoord = Integer.parseInt(k1xor2s.substring(0, 2), base);
-	int cipher2yCoord = Integer.parseInt(k1xor2s.substring(2, 4), base);
-	int cipher3xCoord = Integer.parseInt(k1xor3s.substring(0, 2), base);
-	int cipher3yCoord = Integer.parseInt(k1xor3s.substring(2, 4), base);
-	int cipher4xCoord = Integer.parseInt(k1xor4s.substring(0, 2), base);
-	int cipher4yCoord = Integer.parseInt(k1xor4s.substring(2, 4), base);
+	int cipher1xCoord = Integer.parseInt(kxor1s.substring(0, 2), base);
+	int cipher1yCoord = Integer.parseInt(kxor1s.substring(2, 4), base);
+	int cipher2xCoord = Integer.parseInt(kxor2s.substring(0, 2), base);
+	int cipher2yCoord = Integer.parseInt(kxor2s.substring(2, 4), base);
+	int cipher3xCoord = Integer.parseInt(kxor3s.substring(0, 2), base);
+	int cipher3yCoord = Integer.parseInt(kxor3s.substring(2, 4), base);
+	int cipher4xCoord = Integer.parseInt(kxor4s.substring(0, 2), base);
+	int cipher4yCoord = Integer.parseInt(kxor4s.substring(2, 4), base);
 
 	int[] numberResult = new int[4]; //array to store numbers obtained from s-box lookups
 	//First s-box lookup (s1)
