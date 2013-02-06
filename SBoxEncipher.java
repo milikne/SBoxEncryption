@@ -71,10 +71,7 @@ class SBoxEncipher {
 	binaryResult[1] = String.format("%4s", Integer.toBinaryString(numberResult[1])).replace(' ', '0');
 	binaryResult[2] = String.format("%4s", Integer.toBinaryString(numberResult[2])).replace(' ', '0');
 	binaryResult[3] = String.format("%4s", Integer.toBinaryString(numberResult[3])).replace(' ', '0');
-	System.out.println(binaryResult[0]);
-	System.out.println(binaryResult[1]);
-	System.out.println(binaryResult[2]);
-	System.out.println(binaryResult[3]);
+	System.out.println(binaryResult[0] + " " + binaryResult[1] + " " + binaryResult[2] + " " + binaryResult[3]);
 
 	}
 }
