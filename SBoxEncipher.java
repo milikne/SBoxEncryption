@@ -16,10 +16,25 @@ class SBoxEncipher {
       		     {2, 3, 14, 12}
 	             };            
 
-	String plaintext = new String("0010 1001 1100 0010"); //Plaintext containing 4 binary numbers
-	String key = new String("0001 0011 0010 1111"); //Key containing 4 binary numbers
-
+	String originalPlaintext = new String("0100 0010 0111 0100"); //Plaintext containing 4 binary numbers
+	String key = new String("1010 0010 0011 1010"); //Key containing 4 binary numbers
+	
 	int base = 2;
+
+//The following for loop adds a slight improvement to the security of the encryption through the process
+// 		of substitution, thus increasing the avalanche effect (by approx. 7%)
+	char[] changed = originalPlaintext.toCharArray();
+	//switch each 1 in the plaintext with 0 and vice versa
+	for(int i = 0; i<19; i++) {
+		if(changed[i] == '0') { 
+			changed[i] = '1';
+		}
+		else if(changed[i] == '1') {
+			changed[i] = '0';
+		}
+	}
+	//now our new plaintext has 1s and 0s switched
+	String plaintext = new String(changed);
 
 	//Convert numbers to ints for proper xor evaluation
 	int a2 = Integer.parseInt(plaintext.substring(5,9), base);
@@ -70,6 +85,7 @@ class SBoxEncipher {
 	binaryResult[1] = String.format("%4s", Integer.toBinaryString(numberResult[1])).replace(' ', '0');
 	binaryResult[2] = String.format("%4s", Integer.toBinaryString(numberResult[2])).replace(' ', '0');
 	binaryResult[3] = String.format("%4s", Integer.toBinaryString(numberResult[3])).replace(' ', '0');
+	//prints result of encryption in the format of 4 binary numbers with spaces inbetween
 	System.out.println(binaryResult[0] + " " + binaryResult[1] + " " + binaryResult[2] + " " + binaryResult[3]);
 
 	}
